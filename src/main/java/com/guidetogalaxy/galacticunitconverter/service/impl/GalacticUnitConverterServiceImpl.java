@@ -33,6 +33,10 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	public ConverterResult processInput(List<String> inputLines) throws Exception {
 
 		ConverterResult result = new ConverterResult();
+		
+		if(inputLines == null)
+			return result;
+		
 		inputLines.stream().forEach(line -> {
 			// split by whitespace
 			String[] inputs = line.split(" ");
