@@ -68,4 +68,4 @@ C:\Users\rbutti\guide-to-the-galaxy-master\deliverables>
 ```
 
 ### Problem Statement
-[a relative link](Problem Statement.docx)
+[Problem Statement](/Problem Statement.docx)
