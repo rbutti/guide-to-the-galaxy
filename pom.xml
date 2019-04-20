@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.guidetogalaxy</groupId>
+	<artifactId>galactic-unit-converter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<java.version>9</java.version>
+		<jmockit.version>1.36</jmockit.version>
+		<junit.version>4.9</junit.version>
+		<jdk.version>1.9</jdk.version>
+		<maven-jar-plugin-version>3.1.0</maven-jar-plugin-version>
+		<maven-compiler-plugin-version>3.8.0</maven-compiler-plugin-version>
+		<maven-assembly-plugin-version>2.2</maven-assembly-plugin-version>
+		<maven-source-plugin-version>2.1.2</maven-source-plugin-version>
+		<maven-javadoc-plugin-version>2.8.1</maven-javadoc-plugin-version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>${jmockit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Compiler Plugin to set JDK Compiler Configuration -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Source Plugin to generate a JAR containing source code from the 
+					project. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin-version}</version>
+				<executions>
+					<execution>
+						<id>attach-source</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<finalName>galactic-unit-converter</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Assembly Plugin to generate a executable fat jar from the project. -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin-version}</version>
+				<executions>
+					<execution>
+						<id>exe</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>galactic-unit-converter</finalName>
+							<attach>false</attach>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>src/main/assembly/default.xml</descriptor>
+							</descriptors>
+							<archive>
+								<manifest>
+									<mainClass>com.guidetogalaxy.galacticunitconverter.app.GalaticUnitConverterApp</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/test/resources</directory>
+			</resource>
+		</resources>
+	</build>
+</project>
