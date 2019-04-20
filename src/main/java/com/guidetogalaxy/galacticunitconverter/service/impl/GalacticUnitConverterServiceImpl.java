@@ -11,17 +11,24 @@ import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService;
 import com.guidetogalazy.galacticunitconverter.validator.RomanValidator;
 
+/**
+ * An implementation of {@linkplain GalacticUnitConverterService} to process the
+ * application inputs
+ * 
+ * @author Ravikiran Butti
+ *
+ */
 public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterService {
 
 	private Map<String, RomanNumber> unitToRomanMapping = new HashMap<>();
 	private Map<String, Double> unitsToCreditMapping = new HashMap<>();
 
-	/**
-	 * Parses the input line by line and decides the type of request and
-	 * appropriately forwards the request
-	 *
-	 * @param line
-	 * @throws Exception
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService#
+	 * processInput(java.util.List)
 	 */
 	public ConverterResult processInput(List<String> inputLines) throws Exception {
 
@@ -30,23 +37,34 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 			// split by whitespace
 			String[] inputs = line.split(" ");
 
-			if (line.startsWith(Constant.HOW_MANY_CREDITS_IS)) {
+			switch (identifyOperations(line)) {
+			case 1:
+				// converts galatic units to credits
 				result.addInputQuestion(line);
 				result.addOutputValue(
 						String.valueOf(generateCreditValue(Arrays.copyOfRange(inputs, 4, inputs.length - 1))));
-			} else if (line.startsWith(Constant.HOW_MUCH_IS)) {
+				break;
+			case 2:
+				// convert galatic units to value
 				result.addInputQuestion(line);
 				result.addOutputValue(String
 						.valueOf(generateGalacticUnitToNumericValue(Arrays.copyOfRange(inputs, 3, inputs.length - 1))));
-			} else if (line.contains(Constant.IS) && !line.contains(Constant.CREDITS)) {
+
+				break;
+			case 3:
+				// map galatic units to roman numerals
 				mapInterGalacticToRomanUnits(inputs);
-			} else if (line.contains(Constant.IS) && line.contains(Constant.CREDITS)) {
+				break;
+			case 4:
+				// map galatic units to creditss
 				try {
 					generateObjectSoldPerUnitMap(inputs);
 				} catch (Exception e) {
 					throw new RuntimeException("Failed to Map the Galatic Units to Credits", e);
 				}
-			} else {
+				break;
+			case 5:
+				// Invalid input
 				result.addInputQuestion(line);
 				result.addOutputValue(Constant.NO_IDEA);
 			}
@@ -54,6 +72,34 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		});
 
 		return result;
+	}
+
+	/**
+	 * Private method to identify the operation based on input
+	 * @param line : Input code
+	 * @return : operation number
+	 */
+	private int identifyOperations(String line) {
+
+		if (line.startsWith(Constant.HOW_MANY_CREDITS_IS)) {
+
+			// converts galatic units to credits
+			return 1;
+		} else if (line.startsWith(Constant.HOW_MUCH_IS)) {
+			// convert galatic units to value
+			return 2;
+		} else if (line.contains(Constant.IS) && !line.contains(Constant.CREDITS)) {
+			// map galatic units to roman numerals
+
+			return 3;
+		} else if (line.contains(Constant.IS) && line.contains(Constant.CREDITS)) {
+			// map galatic units to creditss
+
+			return 4;
+		} else {
+			// Invalid input
+			return 5;
+		}
 	}
 
 	/**
