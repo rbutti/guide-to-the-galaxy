@@ -24,8 +24,8 @@ public class FileInputReaderFacadeImpl implements InputReaderFacade {
 	 * com.guidetogalaxy.galacticunitconverter.facade.InputReaderFacade#readInput(
 	 * java.lang.String)
 	 */
-	public List<String> readInput(String fileName) throws Exception {
-		BufferedReader br = new BufferedReader(new FileReader(fileName));
+	public List<String> readInput(String source) throws Exception {
+		BufferedReader br = new BufferedReader(new FileReader(source));
 		List<String> inputQuestions = new ArrayList<String>();
 		try {
 			String line;
