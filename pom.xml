@@ -84,7 +84,7 @@
 							</descriptors>
 							<archive>
 								<manifest>
-									<mainClass>com.guidetogalaxy.galacticunitconverter.app.GalaticUnitConverterApp</mainClass>
+									<mainClass>com.guidetogalaxy.galacticunitconverter.app.GalacticUnitConverterApp</mainClass>
 								</manifest>
 							</archive>
 						</configuration>

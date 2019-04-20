@@ -16,7 +16,7 @@ import com.guidetogalaxy.galacticunitconverter.service.impl.GalacticUnitConverte
  * @author Ravikiran Butti
  *
  */
-public class GalaticUnitConverterApp {
+public class GalacticUnitConverterApp {
 
 	public static void main(String[] args) {
 

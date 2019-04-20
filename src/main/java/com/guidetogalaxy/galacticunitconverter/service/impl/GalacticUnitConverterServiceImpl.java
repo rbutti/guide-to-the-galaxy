@@ -9,7 +9,7 @@ import com.guidetogalaxy.galacticunitconverter.constant.Constant;
 import com.guidetogalaxy.galacticunitconverter.domain.ConverterResult;
 import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService;
-import com.guidetogalaxy.galacticunitconverter.validator.RomanValidator;
+import com.guidetogalaxy.galacticunitconverter.validator.GalacticUnitConverterValidator;
 
 /**
  * An implementation of {@linkplain GalacticUnitConverterService} to process the
@@ -137,7 +137,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		}
 
 		// example romanNumbers is MMVI
-		int value = RomanValidator.validateRoman(romanNumeral.toString());
+		int value = GalacticUnitConverterValidator.validateRoman(romanNumeral.toString());
 		if (value == -1) {
 			return -1;
 		}
@@ -165,7 +165,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 				return -1;
 			}
 
-			return RomanValidator.validateRoman(romanNumeral);
+			return GalacticUnitConverterValidator.validateRoman(romanNumeral);
 		} catch (Exception e) {
 			return -1;
 		}

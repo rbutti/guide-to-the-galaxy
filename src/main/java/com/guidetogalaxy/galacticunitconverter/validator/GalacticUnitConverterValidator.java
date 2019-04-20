@@ -12,9 +12,9 @@ import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
  * @create: 2018-11-15 23:37
  **/
 
-public class RomanValidator {
+public class GalacticUnitConverterValidator {
 
-    private RomanValidator() {
+    private GalacticUnitConverterValidator() {
 
     }
 
