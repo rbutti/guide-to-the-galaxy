@@ -3,7 +3,7 @@ package com.guidetogalazy.galacticunitconverter.validator;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.guidetogalaxy.galacticunitconverter.domain.RomanNumbers;
+import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 
 /**
  * @program: guide-to-the-galaxy
@@ -54,12 +54,12 @@ public class RomanValidator {
 
         for (int i = 0; i < charArray.length; i++) {
             char currentChar = charArray[i];
-            int currentRomanCharNumericValue = RomanNumbers.valueOf(String.valueOf(currentChar)).getValue();
+            int currentRomanCharNumericValue = RomanNumber.valueOf(String.valueOf(currentChar)).getValue();
 
             if (previousChar != ' ') {
-                previousCharacterOrdinal = RomanNumbers.valueOf(String.valueOf(previousChar)).ordinal();
+                previousCharacterOrdinal = RomanNumber.valueOf(String.valueOf(previousChar)).ordinal();
             }
-            currentCharacterOrdinal = RomanNumbers.valueOf(String.valueOf(currentChar)).ordinal();
+            currentCharacterOrdinal = RomanNumber.valueOf(String.valueOf(currentChar)).ordinal();
 
             //They may appear four times if the third and fourth are separated by a smaller value, such as XXXIX
             if (currentChar == previousChar && ++characterRepeatCount < 4 && THREE_TIMES_REPEATED_CHARACTERS.contains(currentChar)) {
@@ -69,7 +69,7 @@ public class RomanValidator {
             } else if (currentChar == previousChar && !THREE_TIMES_REPEATED_CHARACTERS.contains(currentChar)) {
                 total = -1;
             } else if (previousCharacterOrdinal < currentCharacterOrdinal && !NOT_SUBTRACTED_CHARACTERS.contains(previousChar)) {
-                int previousRomanCharNumericValue = RomanNumbers.valueOf(String.valueOf(previousChar)).getValue();
+                int previousRomanCharNumericValue = RomanNumber.valueOf(String.valueOf(previousChar)).getValue();
                 if (previousCharacterOrdinal + 2 >= currentCharacterOrdinal) {
                     total += currentRomanCharNumericValue - (2 * previousRomanCharNumericValue);
                     characterRepeatCount = 1;

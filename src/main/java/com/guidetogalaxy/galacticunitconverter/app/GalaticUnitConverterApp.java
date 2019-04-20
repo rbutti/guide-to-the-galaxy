@@ -11,12 +11,11 @@ import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterServ
 import com.guidetogalaxy.galacticunitconverter.service.impl.GalacticUnitConverterServiceImpl;
 
 /**
- * @program: guide-to-the-galaxy
- * @description: GalaticUnitConverterApp
- * @author: smallsoup
- * @create: 2018-11-15 23:35
- **/
-
+ * Entry class for the Application
+ * 
+ * @author Ravikiran Butti
+ *
+ */
 public class GalaticUnitConverterApp {
 
 	public static void main(String[] args) {
@@ -27,14 +26,20 @@ public class GalaticUnitConverterApp {
 
 		String filePath = "input.txt";
 
+		//If an input file is provided as command line argument use it
 		if (args.length != 0) {
 			filePath = args[0];
 		}
 
 		try {
 
+			//Read inputs
 			List<String> inputs = readInput.readInput(filePath);
+			
+			//process inputs
 			ConverterResult result = service.processInput(inputs);
+			
+			//write output
 			writeOutput.processOutput(result);
 		} catch (Exception e) {
 			System.err.println(

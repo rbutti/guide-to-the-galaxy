@@ -3,6 +3,12 @@ package com.guidetogalaxy.galacticunitconverter.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Result class for the Converter Application
+ * 
+ * @author Ravikiran Butti
+ *
+ */
 public class ConverterResult {
 
 	private List<String> inputQuestions;

@@ -1,12 +1,11 @@
 package com.guidetogalaxy.galacticunitconverter.constant;
 
 /**
- * @program: guide-to-the-galaxy
- * @description: Constant
- * @author: smallsoup
- * @create: 2018-11-18 21:29
- **/
-
+ * Constant class for the Application
+ * 
+ * @author Ravikiran Butti
+ *
+ */
 public class Constant {
 
     public static final String HOW_MUCH_IS = "how much is";

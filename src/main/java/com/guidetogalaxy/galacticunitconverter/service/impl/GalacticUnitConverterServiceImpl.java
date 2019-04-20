@@ -7,13 +7,13 @@ import java.util.Map;
 
 import com.guidetogalaxy.galacticunitconverter.constant.Constant;
 import com.guidetogalaxy.galacticunitconverter.domain.ConverterResult;
-import com.guidetogalaxy.galacticunitconverter.domain.RomanNumbers;
+import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService;
 import com.guidetogalazy.galacticunitconverter.validator.RomanValidator;
 
 public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterService {
 
-	private Map<String, RomanNumbers> unitToRomanMapping = new HashMap<>();
+	private Map<String, RomanNumber> unitToRomanMapping = new HashMap<>();
 	private Map<String, Double> unitsToCreditMapping = new HashMap<>();
 
 	/**
@@ -64,7 +64,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	 */
 	private void mapInterGalacticToRomanUnits(String[] arr) {
 		try {
-			unitToRomanMapping.put(arr[0], RomanNumbers.valueOf(arr[2]));
+			unitToRomanMapping.put(arr[0], RomanNumber.valueOf(arr[2]));
 		} catch (IllegalArgumentException e) {
 			System.out.println("This type of RomanNumbers is not defined, exiting the program " + e);
 		}
@@ -82,7 +82,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		StringBuilder romanNumeral = new StringBuilder();
 		int i;
 		for (i = 0; i < arr.length; i++) {
-			RomanNumbers romanNumbers = unitToRomanMapping.get(arr[i]);
+			RomanNumber romanNumbers = unitToRomanMapping.get(arr[i]);
 			if (romanNumbers != null) {
 				romanNumeral.append(romanNumbers.getDisplayValue());
 			} else {
@@ -154,7 +154,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		StringBuilder romanNumeral = new StringBuilder();
 		int i;
 		for (i = 0; i < arr.length; i++) {
-			RomanNumbers romanNumbers = unitToRomanMapping.get(arr[i]);
+			RomanNumber romanNumbers = unitToRomanMapping.get(arr[i]);
 			if (romanNumbers != null) {
 				romanNumeral.append(romanNumbers.getDisplayValue());
 			} else {
