@@ -9,7 +9,7 @@ import com.guidetogalaxy.galacticunitconverter.constant.Constant;
 import com.guidetogalaxy.galacticunitconverter.domain.ConverterResult;
 import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService;
-import com.guidetogalazy.galacticunitconverter.validator.RomanValidator;
+import com.guidetogalaxy.galacticunitconverter.validator.RomanValidator;
 
 /**
  * An implementation of {@linkplain GalacticUnitConverterService} to process the

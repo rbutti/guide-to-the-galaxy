@@ -1,4 +1,4 @@
-package com.guidetogalazy.galacticunitconverter.validator;
+package com.guidetogalaxy.galacticunitconverter.validator;
 
 import java.util.HashSet;
 import java.util.Set;
