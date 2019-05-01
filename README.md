@@ -66,3 +66,6 @@ I have no idea what you are talking about
 
 C:\Users\rbutti\guide-to-the-galaxy-master\deliverables>
 ```
+
+### Problem Statement
+[Problem Statement](/Problem Statement.docx)
