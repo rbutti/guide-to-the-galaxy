@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.guidetogalaxy.galacticunitconverter.constant.Constant;
+import com.guidetogalaxy.galacticunitconverter.converter.GalacticUnitConverterUtil;
 import com.guidetogalaxy.galacticunitconverter.domain.ConverterResult;
 import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 import com.guidetogalaxy.galacticunitconverter.service.GalacticUnitConverterService;
-import com.guidetogalaxy.galacticunitconverter.validator.GalacticUnitConverterValidator;
 
 /**
  * An implementation of {@linkplain GalacticUnitConverterService} to process the
@@ -57,12 +57,12 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 				break;
 			case 3:
 				// map galatic units to roman numerals
-				mapInterGalacticToRomanUnits(inputs);
+				mapGalacticUnitsToRomanNumerals(inputs);
 				break;
 			case 4:
 				// map galatic units to creditss
 				try {
-					generateObjectSoldPerUnitMap(inputs);
+					mapGalaticUnitsToCredits(inputs);
 				} catch (Exception e) {
 					throw new RuntimeException("Failed to Map the Galatic Units to Credits", e);
 				}
@@ -74,7 +74,8 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 			}
 
 		});
-
+         System.out.println(unitToRomanMapping);
+         System.out.println(unitsToCreditMapping);
 		return result;
 	}
 
@@ -112,7 +113,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	 *
 	 * @param arr
 	 */
-	private void mapInterGalacticToRomanUnits(String[] arr) {
+	private void mapGalacticUnitsToRomanNumerals(String[] arr) {
 		try {
 			unitToRomanMapping.put(arr[0], RomanNumber.valueOf(arr[2]));
 		} catch (IllegalArgumentException e) {
@@ -128,7 +129,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	 * @return
 	 * @throws Exception
 	 */
-	private int generateObjectSoldPerUnitMap(String[] arr) throws Exception {
+	private int mapGalaticUnitsToCredits(String[] arr) throws Exception {
 		StringBuilder romanNumeral = new StringBuilder();
 		int i;
 		for (i = 0; i < arr.length; i++) {
@@ -141,7 +142,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		}
 
 		// example romanNumbers is MMVI
-		int value = GalacticUnitConverterValidator.validateRoman(romanNumeral.toString());
+		int value = GalacticUnitConverterUtil.romanToInteger(romanNumeral.toString());
 		if (value == -1) {
 			return -1;
 		}
@@ -169,7 +170,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 				return -1;
 			}
 
-			return GalacticUnitConverterValidator.validateRoman(romanNumeral);
+			return GalacticUnitConverterUtil.romanToInteger(romanNumeral);
 		} catch (Exception e) {
 			return -1;
 		}
@@ -185,6 +186,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	 * @throws Exception
 	 */
 	private Double generateCreditValue(String[] arr) {
+		
 		int currentValue = generateGalacticUnitToNumericValue(Arrays.copyOfRange(arr, 0, arr.length - 1));
 
 		if (currentValue == -1) {
@@ -201,6 +203,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 	 * @return
 	 */
 	private String generateRomanFromGalacticUnit(String[] arr) {
+		
 		StringBuilder romanNumeral = new StringBuilder();
 		int i;
 		for (i = 0; i < arr.length; i++) {

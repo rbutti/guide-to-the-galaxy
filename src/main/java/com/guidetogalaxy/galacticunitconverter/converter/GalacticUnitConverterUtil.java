@@ -1,4 +1,4 @@
-package com.guidetogalaxy.galacticunitconverter.validator;
+package com.guidetogalaxy.galacticunitconverter.converter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,14 +6,14 @@ import java.util.Set;
 import com.guidetogalaxy.galacticunitconverter.domain.RomanNumber;
 
 /**
- * Validator utility class for GalacticUnitConverter application
+ * Converter utility class for GalacticUnitConverter application
  * 
  * @author Ravikiran Butti
  *
  */
-public final class GalacticUnitConverterValidator {
+public final class GalacticUnitConverterUtil {
 
-	private GalacticUnitConverterValidator() {
+	private GalacticUnitConverterUtil() {
 
 	}
 
@@ -44,7 +44,8 @@ public final class GalacticUnitConverterValidator {
 	 * Validate the input RomanNumber and return it's integer value if valid, else
 	 * return -1
 	 */
-	public static int validateRoman(String romanNumber) throws Exception {
+	public static int romanToInteger(String romanNumber) throws Exception {
+		
 		char[] charArray = romanNumber.toCharArray();
 		char previousChar = ' ';
 
@@ -54,6 +55,7 @@ public final class GalacticUnitConverterValidator {
 		int currentCharacterOrdinal;
 
 		for (int i = 0; i < charArray.length; i++) {
+			
 			char currentChar = charArray[i];
 			int currentRomanCharNumericValue = RomanNumber.valueOf(String.valueOf(currentChar)).getValue();
 
