@@ -142,7 +142,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 		}
 
 		// example romanNumbers is MMVI
-		int value = GalacticUnitConverterUtil.romanToInteger(romanNumeral.toString());
+		int value = GalacticUnitConverterUtil.convertRomanToArabic(romanNumeral.toString());
 		if (value == -1) {
 			return -1;
 		}
@@ -170,7 +170,7 @@ public class GalacticUnitConverterServiceImpl implements GalacticUnitConverterSe
 				return -1;
 			}
 
-			return GalacticUnitConverterUtil.romanToInteger(romanNumeral);
+			return GalacticUnitConverterUtil.convertRomanToArabic(romanNumeral);
 		} catch (Exception e) {
 			return -1;
 		}
